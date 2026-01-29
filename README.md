@@ -110,7 +110,7 @@ Since Angular is a Single Page Application (SPA), server-side redirects are requ
 1. **Clone & Install:**
 
 ```bash
-   git clone https://github.com/your-username/ntt4cities.git
+   git clone https://github.com/sadsotti/ntt4cities.git
    cd ntt4cities
    npm install
 ```
@@ -142,3 +142,4 @@ The project includes a robust testing suite to ensure reliability.
 - [My LinkedIn](https://linkedin.com/in/lorenzo-sottile)
 
 ---
+
