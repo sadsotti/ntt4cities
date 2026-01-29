@@ -53,10 +53,26 @@
         </div>
 
         <p *ngIf="commentsCache[post.id].length === 0" class="no-comments">
-          No comments yet.
+          No comments yet. Be the first to share your thoughts!
         </p>
 
       </div>
+
+      <mat-divider style="margin: 10px 0;"></mat-divider>
+      
+      <div class="add-comment-form" style="display: flex; gap: 10px; align-items: center; padding-top: 10px;">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" style="flex: 1;">
+          <mat-label>Write a reply...</mat-label>
+          <input matInput #commentInput (keyup.enter)="addComment(post.id, commentInput)">
+        </mat-form-field>
+
+        <button mat-mini-fab color="primary" 
+                [disabled]="!commentInput.value.trim()"
+                (click)="addComment(post.id, commentInput)">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+
     </div>
 
   </mat-card>
