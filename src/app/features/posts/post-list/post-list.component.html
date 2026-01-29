@@ -1,0 +1,70 @@
+<div class="header-actions">
+  <div class="title-group">
+    <h1>📰 Posts & Updates</h1>
+    <p>The latest posts from the city</p>
+  </div>
+  
+  <button mat-raised-button color="primary" (click)="createPost()">
+    <mat-icon>edit</mat-icon> Write Post
+  </button>
+</div>
+
+<div class="search-container">
+  <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Search posts...</mat-label>
+    <input matInput (keyup)="applyFilter($event)">
+  </mat-form-field>
+</div>
+
+<div class="posts-grid" *ngIf="filteredPosts.length > 0; else noResults">
+  <mat-card *ngFor="let post of filteredPosts" class="post-card">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="post-avatar">📰</div>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="post-excerpt" [class.expanded]="post.isExpanded">
+        {{ post.body }}
+      </p>
+    </mat-card-content>
+
+    <div class="post-actions">
+      <button mat-button class="action-btn" (click)="post.isExpanded = !post.isExpanded">
+        {{ post.isExpanded ? 'Show Less' : 'Read More' }}
+      </button>
+
+      <button mat-button class="action-btn comment-btn" (click)="toggleComments(post)" [class.active-btn]="post.showComments">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        Comments 
+        <span *ngIf="commentsCache[post.id]">({{ commentsCache[post.id].length }})</span>
+      </button>
+    </div>
+
+    <div class="comments-section" *ngIf="post.showComments">
+      
+      <div *ngIf="commentsCache[post.id]" class="comments-list">
+        
+        <div *ngFor="let comment of commentsCache[post.id]" class="comment-bubble">
+          <div class="comment-author">{{ comment.name }}</div>
+          <div class="comment-text">{{ comment.body }}</div>
+        </div>
+
+        <p *ngIf="commentsCache[post.id].length === 0" class="no-comments">
+          No comments yet.
+        </p>
+
+      </div>
+    </div>
+
+  </mat-card>
+</div>
+
+<ng-template #noResults>
+  <div class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <h3>No posts found</h3>
+  </div>
+</ng-template>

@@ -1,0 +1,52 @@
+<mat-toolbar class="glass-nav">
+  <div class="nav-content">
+    
+    <a class="brand" routerLink="/users" style="text-decoration: none; cursor: pointer;">
+      <span class="brand-emoji">🏙️</span>
+      <span class="brand-text">NTT<span class="light">4Cities</span></span>
+    </a>
+
+    <span class="spacer"></span>
+
+    <nav class="nav-pills desktop-nav">
+      <a routerLink="/users" routerLinkActive="active">👥 Citizens</a>
+      <a routerLink="/posts" routerLinkActive="active">📰 Posts</a>
+    </nav>
+
+    <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #mobileMenu="matMenu" xPosition="before" class="force-white-menu">
+      <button mat-menu-item routerLink="/users">
+        <mat-icon>group</mat-icon>
+        <span>Citizens</span>
+      </button>
+      <button mat-menu-item routerLink="/posts">
+        <mat-icon>newspaper</mat-icon>
+        <span>Posts</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button class="logout-btn desktop-nav" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="app-footer">
+  <div class="footer-content">
+    <p class="copyright">© 2026 <strong>NTT4Cities</strong>. All rights reserved.</p>
+    <p class="course-info">First project developed for the <strong>start2impact</strong> Angular Course.</p>
+    <p class="signature">Made by <strong>Lorenzo Sottile</strong> with <span class="heart">♥</span></p>
+  </div>
+</footer>

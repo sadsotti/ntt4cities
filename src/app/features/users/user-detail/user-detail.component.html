@@ -1,0 +1,58 @@
+<div *ngIf="hasError" class="error-state">
+  <div class="error-icon">👻</div>
+  <h2>User Not Found!</h2>
+  <p>It seems this citizen no longer exists in our archives (Error 404).</p>
+  <button mat-raised-button color="primary" routerLink="/users">
+    <mat-icon>arrow_back</mat-icon> Back to List
+  </button>
+</div>
+
+<div class="container-detail" *ngIf="!hasError && user">
+
+  <div class="user-hero">
+    <div class="avatar-box">{{ user.name.charAt(0) }}</div>
+    <div class="user-info">
+      <h1>{{ user.name }}</h1>
+      <p class="email">📧 {{ user.email }}</p>
+      <div class="badges">
+        <span class="badge status" [class.active]="user.status === 'active'">
+          {{ user.status === 'active' ? '🟢 Active' : '🔴 Inactive' }}
+        </span>
+        <span class="badge gender">
+          {{ user.gender === 'male' ? '👨 Male' : '👩 Female' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-title" *ngIf="posts.length > 0">📝 Published Posts ({{ posts.length }})</h3>
+
+  <mat-accordion multi displayMode="flat">
+    <mat-expansion-panel *ngFor="let post of posts" class="modern-panel" (opened)="toggleComments(post.id)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ post.title }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p class="post-body">{{ post.body }}</p>
+
+      <div class="comments-box">
+        <h4>💬 Comments</h4>
+        <div *ngIf="comments[post.id]">
+          <div class="comment" *ngFor="let comment of comments[post.id]">
+            <div class="comment-avatar">👤</div>
+            <div class="comment-content">
+              <strong>{{ comment.name }}</strong>
+              <p>{{ comment.body }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="input-area">
+          <input #input placeholder="✍️ Write a comment..." (keyup.enter)="addComment(post.id, input)">
+          <button mat-icon-button (click)="addComment(post.id, input)">
+            <mat-icon>send</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

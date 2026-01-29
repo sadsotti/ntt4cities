@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+  
+  <mat-card class="login-card">
+    <div class="brand-header">
+      <div class="logo-emoji">🏙️</div>
+      <h1>Welcome</h1>
+      <p>Access the NTT4Cities dashboard</p>
+    </div>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>GoRest Token</mat-label>
+          <input matInput formControlName="token" placeholder="Enter your Bearer Token" type="password" (input)="isTokenInvalid = false">
+          <mat-icon matPrefix>vpn_key</mat-icon>
+
+          <mat-error *ngIf="isTokenInvalid">
+            ❌ Invalid GoRest Token. Please try again.
+          </mat-error>
+
+          <mat-error *ngIf="form.get('token')?.invalid && !isTokenInvalid">
+            Token is required (min 10 characters).
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="login-btn" type="submit" [disabled]="form.invalid">
+          Login
+        </button>
+
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <p class="footer-note">Don't have a token? <a href="https://gorest.co.in/" target="_blank">Get one here</a></p>
+    </mat-card-footer>
+  </mat-card>
+
+</div>
