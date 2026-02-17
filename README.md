@@ -8,7 +8,7 @@ First project developed by me for the **start2impact** Angular Course.
 
 ## 🚀 Live Demo
 
-👉 **[Live Demo](https://rootloop.up.railway.app/)** 👈
+👉 **[NTT4Cities](https://ntt4cities.netlify.app/)** 👈
 
 ---
 
@@ -142,6 +142,3 @@ The project includes a robust testing suite to ensure reliability.
 * **My LinkedIn:** [https://www.linkedin.com/in/lorenzo-sottile/](https://www.linkedin.com/in/lorenzo-sottile/)
 
 ---
-
-
-
